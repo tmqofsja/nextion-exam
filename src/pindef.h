@@ -34,7 +34,4 @@
 #define USART_ESP     Serial1 // PA9(TX) & PA10(RX)
 #define USART_DEBUG   Serial  // USB-CDC (Takes PA8,PA9,PA10,PA11)
 
-#define aaa Serial1
-#define bbb Serial2
-#define ccc Serial6
 #endif

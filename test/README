@@ -9,3 +9,39 @@ in the development cycle.
 
 More information about PlatformIO Unit Testing:
 - https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+
+
+platformio.ini 파일에서 하드웨어 시리얼만 정의하면 됩니다:
+[env:blackpill_f401cc]
+platform = ststm32
+board = blackpill_f401cc
+Framework = arduino
+upload_protocol = dfu
+build_flags =
+-D PIO_FRAMEWORK_ARDUINO_ENABLE_CDC
+-D USBCON
+-D ENABLE_HWSERIAL2 ;하드웨어 시리얼2 활성화 <==== =
+-D PIN_SERIAL2_RX=PB7 ;default PA3 <== 기본 RX를 변경하려는 경우
+-D PIN_SERIAL2_TX=PB6 ;default PA2 <==
+
+
+ -D ENABLE_HWSERIAL2
+ -D ENABLE_HWSERIAL3
+ -D PIO_FRAMEWORK_ARDUINO_ENABLE_CDC
+ -D PIO_FRAMEWORK_ARDUINO_USB_HIGHSPEED
+
+
+그런 다음 Serial2를 다음과 같이 일반적인 방법으로 사용할 수 있습니다:
+#include <Arduino.h>
+void setup( ) {
+Serial2.begin(9600);
+핀모드(PC13, 출력);
+}
+
+무효 루프() {
+digitalWrite(PC13, HIGH); // LED를 켭니다. (HIGH는 전압 레벨입니다.)
+Delay(1000); // 두 번째
+digitalWrite(PC13, LOW)를 기다립니다 . // 전압을 LOW로 만들어 LED를 끕니다.
+Delay(1000); // 두 번째를 기다립니다.
+Serial2.println("Hello World");
+}

@@ -6,11 +6,13 @@ int myFunction(int, int);
 
 void setup() {
 
+Serial.begin(9600);
   pinInit();
   lcdInit();
 
   // put your setup code here, to run once:
   int result = myFunction(2, 3);
+  Serial.println(result);
 }
 
 void loop() {
