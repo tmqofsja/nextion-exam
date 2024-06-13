@@ -1,21 +1,13 @@
 #include <Arduino.h>
 #include "main.h"
 
-// put function declarations here:
-int myFunction(int, int);
-
 SensorState currentState;
-
-
 
 void setup() {
 
 Serial.begin(9600);
   pinInit();
   lcdInit();
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-  Serial.println(result);
 }
 
 static void lcdRefresh(void);
@@ -25,12 +17,6 @@ void loop() {
     lcdListen();
     lcdRefresh();
 
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
 
 //#############################################################################################
